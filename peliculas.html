@@ -20,6 +20,16 @@
     <header class=" p-5 ">
         <img class="w-full" src="./assets/Movies.gif" alt="banner movies">   
     </header>
+    <search class="flex flex-wrap gap-5 justify-center">
+        <select class="px-2 border rounded bg-slate-800 text-white" name="genero" id="contenedorSelect">
+            <option selected disabled>Select a genres</option>
+            <option value="">-- none --</option>
+        </select>
+        <div class="relative">
+            <input id="inputBusqueda" class="w-80 px-2 border rounded" placeholder="Search your movies..." type="text">
+            <img class="w-[15px] absolute top-1 right-1" src="./assets/icon-busqueda.gif" alt="x-icon-busqueda">
+        </div>
+    </search>
     <main id="contenedor-main">
 
     </main>
