@@ -15,7 +15,7 @@ function crearCard(pelicula){
         <h3 class="font-medium bg-slate-800 text-center">${pelicula.title}</h3>
         <h4 class="font-semibold">${pelicula.tagline}</h4>
         <p>${pelicula.overview}</p>
-        <a href="./detalles_peliculas.html">more</a>
+        <a class="hover:text-fuchsia-600" href="./detalles_peliculas.html?id=${pelicula.id}">See more...</a>
     </article>
     `
 }
