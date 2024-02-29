@@ -57,10 +57,9 @@ contSelect.innerHTML +=  arrayGenres.reduce(fnReduce, "" )
 //filtro peliculas por nombre
 
 inputBusqueda.addEventListener("input", () =>{
-    console.log("input buscador: ", inputBusqueda.value)
     const moviesFiltradosG = filtrarMoviesPorGenero(peliculas, contSelect.value)
     const moviesFiltradosN = filtroMoviesPorNombre(moviesFiltradosG, inputBusqueda.value)
-    
+
     div.innerHTML = mostrarCard(moviesFiltradosN, div)
 })
 
@@ -71,7 +70,9 @@ function filtroMoviesPorNombre(listaPeliculas, nombre){
 //escucho y filtro por genero
 contSelect.addEventListener("change",() => {
     const moviesFiltradosG = filtrarMoviesPorGenero(peliculas, contSelect.value)
-    div.innerHTML = mostrarCard(moviesFiltradosG, div)
+    const moviesFiltradosN = filtroMoviesPorNombre(moviesFiltradosG, inputBusqueda.value)
+
+    div.innerHTML = mostrarCard(moviesFiltradosN, div)
 
 })
 
@@ -82,5 +83,5 @@ function filtrarMoviesPorGenero(listaPeliculas, genero){
     }else{
         return listaPeliculas.filter(pelicula => pelicula.genres.includes(genero))
     }
-
 }
+
