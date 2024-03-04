@@ -1,72 +1,50 @@
-console.log(peliculas)
+import { 
+    mostrarCard,
+    obtenerGeneros,
+    fnReduce,
+    filtroMoviesPorNombre,
+    filtrarMoviesPorGenero,
+} from "./module/funciones.js"
+
+//FETCH
+let peliculas = []
+
+const url = "https://moviestack.onrender.com/api/movies"
+const init = {
+    method: "GET",
+    headers: {
+        "x-api-key" : "0ff70d54-dc0b-4262-9c3d-776cb0f34dbd"
+    }
+}
+
+fetch(url, init)
+    .then(response => response.json())
+    .then((datos) => {
+        peliculas = datos.movies
+        div.innerHTML = mostrarCard(peliculas, div) 
+        const arrayGenres = obtenerGeneros(peliculas)
+        contSelect.innerHTML += arrayGenres.reduce(fnReduce, "" )   
+    })
+    .catch((error) => console.log("Mensaje error:", error))
+//
 
 const main = document.getElementById("contenedor-main")
-
 const div = document.createElement("div")
 div.id = "contenedor"
 div.className = "flex flex-wrap justify-center p-5 gap-3"
-
 main.appendChild(div)
 
-function crearCard(pelicula){
-    return`
-    <article class="w-80 flex flex-col gap-2 p-2 text-white border rounded border-slate-800 bg-slate-900 "> 
-        <img class="rounded" src="${pelicula.image}" alt="${pelicula.title}">
-        <h3 class="font-medium bg-slate-800 text-center">${pelicula.title}</h3>
-        <h4 class="font-semibold">${pelicula.tagline}</h4>
-        <p>${pelicula.overview}</p>
-        <a class="hover:text-fuchsia-600" href="./detalles_peliculas.html?id=${pelicula.id}">See more...</a>
-    </article>
-    `
-}
-
-function mostrarCard(listaPeliculas, elemento){
-    let cardCont = ""
-    for (const pelicula of listaPeliculas){
-        cardCont += crearCard(pelicula)
-    }
-    if(listaPeliculas.length == 0){
-        cardCont = `<h2 class="font-semibold text-white text-2xl">no movies found</h2>`
-    }
-    
-    return cardCont
-}
-div.innerHTML = mostrarCard(peliculas, div)
-
 //[Filtros y busqueda]
-
 const inputBusqueda = document.getElementById("inputBusqueda")
 const contSelect = document.getElementById("contenedorSelect")
 
-//Obtendo generos y saco repetidos
-const genres = peliculas.map( pelicula => pelicula.genres).flat()
-
-const genresSet = new Set(genres) //Nota: permite almacenar valores unicos e iterar (por el cual saca los repetidos)
-const arrayGenres = Array.from(genresSet) // Convierto en array el set.
-
-//creo options para el select y retorno
-function crearSelect(genres){
-    return`
-    <option value="${genres}">${genres}</option>
-    `
-}
-
-const fnReduce =(template, genres) => template + crearSelect(genres)
-contSelect.innerHTML +=  arrayGenres.reduce(fnReduce, "" )
-
-//filtro peliculas por nombre
-
+//escucho y filtro por nombre
 inputBusqueda.addEventListener("input", () =>{
     const moviesFiltradosG = filtrarMoviesPorGenero(peliculas, contSelect.value)
     const moviesFiltradosN = filtroMoviesPorNombre(moviesFiltradosG, inputBusqueda.value)
 
     div.innerHTML = mostrarCard(moviesFiltradosN, div)
 })
-
-function filtroMoviesPorNombre(listaPeliculas, nombre){
-    return listaPeliculas.filter(pelicula => pelicula.title.toLowerCase().startsWith(nombre.toLowerCase()))
-}
-
 //escucho y filtro por genero
 contSelect.addEventListener("change",() => {
     const moviesFiltradosG = filtrarMoviesPorGenero(peliculas, contSelect.value)
@@ -76,12 +54,34 @@ contSelect.addEventListener("change",() => {
 
 })
 
-function filtrarMoviesPorGenero(listaPeliculas, genero){
-    if(genero.length == 0){
-        return listaPeliculas
+///
+//const botones = document.querySelectorAll("button")
 
-    }else{
-        return listaPeliculas.filter(pelicula => pelicula.genres.includes(genero))
-    }
-}
+let listaFavoritos = JSON.parse(localStorage.getItem("listaFavoritos")) || []
+console.log(peliculas)
 
+contenedor.addEventListener("click",(event) => {
+    console.log("hola")
+
+    if (event.target.tagName === "BUTTON") {
+        const boton = event.target
+        console.log(boton)
+
+        const peliculaId = boton.dataset.id
+        const peliculaFavorita = peliculas.find(pelicula => pelicula.id == peliculaId)
+        console.log(peliculaFavorita)
+
+        if (boton.textContent === "♡") {
+          boton.textContent = "❤️"
+          boton.className = "absolute top-0 left-0 mt-0.5 ml-2 text-xl text-white"
+          listaFavoritos.push(peliculaFavorita)
+        } else {
+          boton.textContent = "♡"
+          boton.className = "absolute top-0 left-0 mt-0.5 ml-2 text-3xl text-white"
+          listaFavoritos = listaFavoritos.filter(pelicula => pelicula.id !== peliculaId)
+        }
+      }
+
+    localStorage.setItem("listaFavoritos", JSON.stringify(listaFavoritos))
+    console.log("Lista de favoritos actualizada:", listaFavoritos)
+})
