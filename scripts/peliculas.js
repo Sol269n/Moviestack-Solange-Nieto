@@ -21,9 +21,13 @@ fetch(url, init)
     .then(response => response.json())
     .then((datos) => {
         peliculas = datos.movies
+        //console.log(peliculas)
         div.innerHTML = mostrarCard(peliculas, div) 
         const arrayGenres = obtenerGeneros(peliculas)
-        contSelect.innerHTML += arrayGenres.reduce(fnReduce, "" )   
+        contSelect.innerHTML += arrayGenres.reduce(fnReduce, "" ) 
+        
+        //
+        
     })
     .catch((error) => console.log("Mensaje error:", error))
 //
@@ -58,30 +62,36 @@ contSelect.addEventListener("change",() => {
 //const botones = document.querySelectorAll("button")
 
 let listaFavoritos = JSON.parse(localStorage.getItem("listaFavoritos")) || []
-console.log(peliculas)
+console.log(listaFavoritos) //revisando lista me guarda cosas vacias null
+//console.log(peliculas) //no me trae nada, array vacio
 
 contenedor.addEventListener("click",(event) => {
-    console.log("hola")
+    //console.log("hola") // detecta el click y da hola la primera vez
+    //console.log(peliculas) //me trae el array despues del click
 
     if (event.target.tagName === "BUTTON") {
         const boton = event.target
-        console.log(boton)
+        //console.log(boton) //
+        const peliculaId = boton.dataset.peliculaid
+        //console.log(peliculaId) //obtiene id de card
 
-        const peliculaId = boton.dataset.id
-        const peliculaFavorita = peliculas.find(pelicula => pelicula.id == peliculaId)
-        console.log(peliculaFavorita)
+        marcarFavorito(boton, peliculaId)
+    }
+})
 
-        if (boton.textContent === "♡") {
-          boton.textContent = "❤️"
-          boton.className = "absolute top-0 left-0 mt-0.5 ml-2 text-xl text-white"
-          listaFavoritos.push(peliculaFavorita)
-        } else {
-          boton.textContent = "♡"
-          boton.className = "absolute top-0 left-0 mt-0.5 ml-2 text-3xl text-white"
-          listaFavoritos = listaFavoritos.filter(pelicula => pelicula.id !== peliculaId)
-        }
+function marcarFavorito(boton, peliculaId){
+    const peliculaFavorita = peliculas.find(pelicula => pelicula.id == peliculaId)
+        //console.log(peliculaFavorita)
+    if (boton.textContent === "♡") {
+        boton.textContent = "❤️"
+        boton.className += "absolute top-0 left-0 mt-0.5 ml-2 text-xl text-white"
+        listaFavoritos.push(peliculaFavorita)
+      } else {
+        boton.textContent = "♡"
+        boton.className += "absolute top-0 left-0 mt-0.5 ml-2 text-3xl text-white"
+        listaFavoritos = listaFavoritos.filter(pelicula => pelicula.id !== peliculaId)
       }
 
-    localStorage.setItem("listaFavoritos", JSON.stringify(listaFavoritos))
-    console.log("Lista de favoritos actualizada:", listaFavoritos)
-})
+      localStorage.setItem("listaFavoritos", JSON.stringify(listaFavoritos))
+      console.log("Lista de favoritos actualizada:", listaFavoritos) // revisando lista
+}
