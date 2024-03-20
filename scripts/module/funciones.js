@@ -69,7 +69,7 @@ export function crearDetalles(detallePelicula){
         <div class="flex flex-wrap gap-5">
             <img class="w-[500px] h-70 rounded object-cover" src="https://moviestack.onrender.com/static/${detallePelicula.image}" alt="${detallePelicula.title}">
             <div class="w-[350px] h-70">
-                <h3 class="font-medium">${detallePelicula.title}</h3>
+                <h3 class="text-xl font-medium">${detallePelicula.title}</h3>
                 <h4 class="font-semibold py-0.5">${detallePelicula.tagline}</h4>
                 <p class="italic py-3">${detallePelicula.genres}</p>
                 <p>${detallePelicula.overview}</p>

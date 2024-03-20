@@ -1,4 +1,5 @@
 import { mostrarCard } from "./module/funciones.js"
+import { actualizarEstadoBotones } from "./peliculas.js"
 
 //FETCH
 let peliculas = []
@@ -25,5 +26,7 @@ fetch(url, init)
     .then((datos) => {
         peliculas = datos.movies
         div.innerHTML = mostrarCard(listaFavoritos, div) 
+
+        actualizarEstadoBotones()
     })
     .catch((error) => console.log("Mensaje error:", error))

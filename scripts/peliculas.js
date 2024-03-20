@@ -26,7 +26,8 @@ fetch(url, init)
         const arrayGenres = obtenerGeneros(peliculas)
         contSelect.innerHTML += arrayGenres.reduce(fnReduce, "" ) 
         
-        //
+        // Llamar a la función para actualizar el estado de los botones
+        actualizarEstadoBotones()
         
     })
     .catch((error) => console.log("Mensaje error:", error))
@@ -91,7 +92,34 @@ function marcarFavorito(boton, peliculaId){
         boton.className += "absolute top-0 left-0 mt-0.5 ml-2 text-3xl text-white"
         listaFavoritos = listaFavoritos.filter(pelicula => pelicula.id !== peliculaId)
       }
-
       localStorage.setItem("listaFavoritos", JSON.stringify(listaFavoritos))
       console.log("Lista de favoritos actualizada:", listaFavoritos) // revisando lista
+}
+
+
+
+
+// Elimina la redefinición de la variable listaFavoritos dentro de la función actualizarEstadoBotones
+
+export function actualizarEstadoBotones() {
+    console.log("Función actualizarEstadoBotones ejecutada al cargar la página")
+    // Obtener la lista de favoritos del localStorage
+    const listaFavoritosLocal = JSON.parse(localStorage.getItem("listaFavoritos")) || []
+
+    console.log("Lista de favoritos cargada:", listaFavoritosLocal)
+
+    // Iterar sobre todos los botones y actualizar su estado
+    document.querySelectorAll("button[data-peliculaId]").forEach(boton => {
+        const peliculaId = boton.dataset.peliculaid
+        // Verificar si la película está en la lista de favoritos
+        const esFavorito = listaFavoritosLocal.some(pelicula => pelicula.id == peliculaId)
+        // Actualizar el estado del botón
+        if (esFavorito) {
+            boton.textContent = "❤️"
+            boton.classList.add("text-xl", "text-white")
+        } else {
+            boton.textContent = "♡"
+            boton.classList.remove("text-xl", "text-white")
+        }
+    })
 }
