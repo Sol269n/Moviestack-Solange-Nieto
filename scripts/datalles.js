@@ -1,7 +1,7 @@
 import {crearDetalles} from "./module/funciones.js"
 
 const contDetalle = document.getElementById("contenedorDetalles")
-contDetalle.className = "w-full flex flex-wrap justify-center p-5 gap-3 text-white"
+contDetalle.className = " flex flex-wrap justify-center p-5 gap-3 text-white"
 
 let peliculas = []
 
@@ -22,7 +22,7 @@ fetch(url, init)
         const id = URLParams.get("id")
         const detallePelicula = peliculas.find(pelicula => pelicula.id == id)
 
-        contDetalle.innerHTML = crearDetalles(detallePelicula)
+        contDetalle.innerHTML += crearDetalles(detallePelicula)
     })
     .catch((error) => console.log("Mensaje error:", error))
 

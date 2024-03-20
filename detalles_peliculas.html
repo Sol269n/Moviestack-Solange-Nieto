@@ -8,18 +8,23 @@
     <title>Detalles</title>
 </head>
 <body class="w-full min-h-screen flex flex-col bg-slate-950">
-    <div class="flex flex-wrap items-center bg-neutral-950">
-        <img class="w-[45px] object-cover p-1" src="./assets/Moviestack_favicon.png" alt="Icono Cine">
-        <img class="w-50 h-6 object-cover" src="./assets/Moviestack_logotipo2.png" alt="Moviestack Moviestack_logotipo2">
+    <div class="fixed top-0 left-0 right-0 flex flex-wrap items-center bg-neutral-950">
+        <a href="./index.html" class="grow flex justify-start items-center">
+            <img class="w-[45px] object-cover p-1" src="./assets/Moviestack_favicon.png" alt="Icono Cine">
+            <img class="w-50 h-6 object-cover" src="./assets/Moviestack_logotipo2.png" alt="Moviestack Moviestack_logotipo2">
+        </a>
         <nav class="grow p-2 flex justify-end gap-2">
             <a class="hover:bg-white hover:text-black text-white p-1" href="./index.html">Home</a>
             <a class="hover:bg-white hover:text-black text-white p-1" href="./peliculas.html">Movies</a>
             <a class="hover:bg-white hover:text-black text-white p-1" href="./favs.html">Favs</a>
         </nav>
     </div>
-    <main>
+    <main class="">
+        <div class="flex justify-start items-start p-10 pb-5">
+            <a class=" text-white hover:bg-white hover:text-black w-[90px] h-[35px] border rounded py-1 px-2 bg-fuchsia-600" href="./peliculas.html">Goo back</a>
+        </div>
         <div id="contenedorDetalles">
-            
+
         </div>
     </main>
     <footer class="bg-neutral-950 border border-neutral-900">

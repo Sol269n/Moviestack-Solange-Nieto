@@ -8,34 +8,40 @@
     <title>Inicio</title>
 </head>
 <body class="w-full min-h-screen flex flex-col bg-slate-950">
-    <div class="flex flex-wrap items-center bg-neutral-950">
-        <img class="w-[45px] object-cover p-1" src="./assets/Moviestack_favicon.png" alt="Icono Cine">
-        <img class="w-50 h-6 object-cover" src="./assets/Moviestack_logotipo2.png" alt="Moviestack Moviestack_logotipo2">
+    <div class="fixed top-0 left-0 right-0 flex flex-wrap items-center bg-neutral-950">
+        <a href="#" class="grow flex justify-start items-center">
+            <img class="w-[45px] object-cover p-1" src="./assets/Moviestack_favicon.png" alt="Icono Cine">
+            <img class="w-50 h-6 object-cover" src="./assets/Moviestack_logotipo2.png" alt="Moviestack Moviestack_logotipo2">
+        </a>
         <nav class="grow p-2 flex justify-end gap-2">
-            <a class="bg-fuchsia-600 hover:bg-white hover:text-black text-white border rounded p-1" href="#">Home</a>
-            <a class="hover:bg-white hover:text-black text-white p-1" href="./peliculas.html">Movies</a>
-            <a class="hover:bg-white hover:text-black text-white p-1" href="./favs.html">Favs</a>
+            <a class="bg-fuchsia-600 hover:bg-white hover:text-black text-white border-none rounded p-1" href="#">Home</a>
+            <a class="hover:bg-white hover:text-black hover:rounded text-white p-1" href="./peliculas.html">Movies</a>
+            <a class="hover:bg-white hover:text-black hover:rounded text-white p-1" href="./favs.html">Favs</a>
         </nav>
     </div>
     <header class="p-5">
-        <img class="w-30 h-25 object-cover" src="./assets/banner-8567292_1920.jpg" alt="Banner">
+        <img class="w-full h-[500px] object-cover object-center " src="./assets/cinema.jpg" alt="Banner">
     </header>
     <main> 
         <div class="flex flex-col items-center px-10">
             <article >
-                <h4 class="text-center text-white py-2 font-medium">¡Welcome to MovieStack Cinema!</h4>
-                <p class="text-center text-white">Discover exciting premieres, cinema classics, and special events in our modern theaters. Immerse yourself in the magic of cinema with us. Book now and live an unforgettable experience! But MovieStack Cinema is not just a destination to watch movies; it's a gathering place for friends, families, and cinephiles alike. Our welcoming atmosphere and dedicated team are here to ensure that each visit is memorable and filled with joy.</p>
+                <h4 class="uppercase text-2xl text-center text-white py-2 pb-5 font-medium">¡Welcome to MovieStack Cinema!</h4>
+                <p class="w-[1020px] text-lg text-center text-white">Discover exciting premieres, cinema classics, and special events in our modern theaters. Immerse yourself in the magic of cinema with us. Book now and live an unforgettable experience! But MovieStack Cinema is not just a destination to watch movies; it's a gathering place for friends, families, and cinephiles alike. Our welcoming atmosphere and dedicated team are here to ensure that each visit is memorable and filled with joy.</p>
             </article>
             <section class="py-10">
-                <p class="text-center text-white">Discover exciting stories and timeless classics at our cinema! Don't miss out on your favorites and find new gems. Come and be enchanted by the magic of cinema!</p>
+                <p class="w-[1020px] text-lg text-center text-white">Discover exciting stories and timeless classics at our cinema! Don't miss out on your favorites and find new gems. Come and be enchanted by the magic of cinema!</p>
                 <div class="flex flex-wrap justify-center gap-20 py-10">
-                    <section class="bg-violet-700">
-                        <img class="w-[400px] h[300px] object-cover" src="./assets/cineB.jpg" alt="">
-                        <a class="text-white flex justify-center items-center" href="./peliculas.html">Movies</a>
+                    <section>
+                        <a class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 relative flex justify-start items-center " href="./peliculas.html">
+                            <img class="w-[400px] h[300px] object-cover" src="./assets/cineB.jpg" alt="">
+                            <p class="absolute text-white text-center text-4xl font-semibold p-12">Movies</p>
+                        </a>
                     </section>
-                    <section class="bg-violet-700">
-                        <img class="w-[400px] h[300px] object-cover" src="./assets/cineA.jpg" alt="">
-                        <a class="text-white flex justify-center items-center" href="./favs.html">Favs</a>
+                    <section>
+                        <a class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 relative flex justify-start items-center " href="./favs.html">
+                            <img class="w-[400px] h[300px] object-cover" src="./assets/cineA.jpg" alt="">
+                            <p class="absolute text-white text-center text-4xl font-semibold p-12">Favs</p>
+                        </a>
                     </section>
                 </div>
             </section>
