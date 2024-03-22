@@ -49,6 +49,7 @@ inputBusqueda.addEventListener("input", () =>{
     const moviesFiltradosN = filtroMoviesPorNombre(moviesFiltradosG, inputBusqueda.value)
 
     div.innerHTML = mostrarCard(moviesFiltradosN, div)
+    actualizarEstadoBotones()
 })
 //escucho y filtro por genero
 contSelect.addEventListener("change",() => {
@@ -56,6 +57,7 @@ contSelect.addEventListener("change",() => {
     const moviesFiltradosN = filtroMoviesPorNombre(moviesFiltradosG, inputBusqueda.value)
 
     div.innerHTML = mostrarCard(moviesFiltradosN, div)
+    actualizarEstadoBotones()
 
 })
 

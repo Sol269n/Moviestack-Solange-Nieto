@@ -98,16 +98,16 @@ export function crearDetalles(detallePelicula){
         <table class="[350px] border-collapse border border-slate-500">
             <thead class="border-collapse border border-slate-500">
                 <tr>
-                    <th class="border border-slate-600">Votage average</th>
-                    <th class="border border-slate-600">Budget</th>
-                    <th class="border border-slate-600">Revenue</th>
+                    <th class="border border-slate-600 px-2">Votage average</th>
+                    <th class="border border-slate-600 px-2">Budget</th>
+                    <th class="border border-slate-600 px-2">Revenue</th>
                 </tr>
             </thead>
             <tbody class"">
                 <tr>
-                    <td class="text-center border border-slate-600">${detallePelicula.vote_average}</td>
-                    <td class="text-center border border-slate-600">${detallePelicula.budget}</td>
-                    <td class="text-center border border-slate-600">${detallePelicula.revenue}</td>
+                    <td class="text-center border border-slate-600 p-2">${detallePelicula.vote_average}</td>
+                    <td class="text-center border border-slate-600 p-2">$${detallePelicula.budget.toLocaleString()}</td>
+                    <td class="text-center border border-slate-600 p-2">$${detallePelicula.revenue.toLocaleString()}</td>
                 </tr>
             </tbody>
         </table>
